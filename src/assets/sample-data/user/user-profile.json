@@ -1,0 +1,27 @@
+{
+  "id": 0,
+  "foto": "./assets/sample-images/user/person_1.jpg",
+  "nombre": "Carlos",
+  "apellido": "Sanchez",
+  "clave": "demo1234!",
+  "email": "carlos.sanchez@gmail.com",
+  "tipoDoc": "1",
+  "nroDoc": "30971590",
+  "totalLogros": "4",
+  "totalDesafios": "5",
+  "totalActividades":"8",
+  "totalDistancia":"50",
+  "totalUsd":"300",
+  "plataforma": "iOs",
+  "fechaUltimoUso": "01/04/2022",
+  "versionInstalada": "1.4",
+  "genero": 1,
+  "peso": 56.7,
+  "estatura": 170,
+  "entidadBeneficaId": 4,
+  "totalCalorias": 500,
+  "totalTiempo": 20,
+  "totalCoins": 35,
+  "cotizacion": 0.34
+
+}
