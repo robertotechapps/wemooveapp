@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "761745528058",
+    "project_id": "wemoove-prod",
+    "storage_bucket": "wemoove-prod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761745528058:android:4905daaf952e0f97d96543",
+        "android_client_info": {
+          "package_name": "wemoove.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761745528058-7lrd8pcniou0bek83g2n1cg7ei8sef3u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7ytE-CQeCXq_PmKtUQghI_KBJMmpupNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761745528058-7lrd8pcniou0bek83g2n1cg7ei8sef3u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
