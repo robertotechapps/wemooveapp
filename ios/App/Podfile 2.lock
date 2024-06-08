@@ -1,0 +1,132 @@
+PODS:
+  - AppAuth (1.5.0):
+    - AppAuth/Core (= 1.5.0)
+    - AppAuth/ExternalUserAgent (= 1.5.0)
+  - AppAuth/Core (1.5.0)
+  - AppAuth/ExternalUserAgent (1.5.0):
+    - AppAuth/Core
+  - Capacitor (3.6.0):
+    - CapacitorCordova
+  - CapacitorApp (1.1.1):
+    - Capacitor
+  - CapacitorCamera (1.3.1):
+    - Capacitor
+  - CapacitorCommunityAppleSignIn (1.0.1):
+    - Capacitor
+  - CapacitorCordova (3.6.0)
+  - CapacitorDevice (1.1.2):
+    - Capacitor
+  - CapacitorFilesystem (1.1.0):
+    - Capacitor
+  - CapacitorGeolocation (1.3.1):
+    - Capacitor
+  - CapacitorHaptics (1.1.4):
+    - Capacitor
+  - CapacitorKeyboard (1.2.2):
+    - Capacitor
+  - CapacitorPushNotifications (1.0.9):
+    - Capacitor
+  - CapacitorSplashScreen (1.2.2):
+    - Capacitor
+  - CapacitorStatusBar (1.0.8):
+    - Capacitor
+  - CapacitorStorage (1.2.5):
+    - Capacitor
+  - CodetrixStudioCapacitorGoogleAuth (0.0.1):
+    - Capacitor
+    - GoogleSignIn (~> 6.0.1)
+  - CordovaPlugins (3.4.3):
+    - CapacitorCordova
+  - GoogleSignIn (6.0.2):
+    - AppAuth (~> 1.4)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.3.0):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.7.2)
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - "CapacitorCamera (from `../../node_modules/@capacitor/camera`)"
+  - "CapacitorCommunityAppleSignIn (from `../../node_modules/@capacitor-community/apple-sign-in`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorDevice (from `../../node_modules/@capacitor/device`)"
+  - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
+  - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
+  - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
+  - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
+  - "CapacitorPushNotifications (from `../../node_modules/@capacitor/push-notifications`)"
+  - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
+  - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - "CapacitorStorage (from `../../node_modules/@capacitor/storage`)"
+  - "CodetrixStudioCapacitorGoogleAuth (from `../../node_modules/@codetrix-studio/capacitor-google-auth`)"
+  - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
+
+SPEC REPOS:
+  trunk:
+    - AppAuth
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorApp:
+    :path: "../../node_modules/@capacitor/app"
+  CapacitorCamera:
+    :path: "../../node_modules/@capacitor/camera"
+  CapacitorCommunityAppleSignIn:
+    :path: "../../node_modules/@capacitor-community/apple-sign-in"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorDevice:
+    :path: "../../node_modules/@capacitor/device"
+  CapacitorFilesystem:
+    :path: "../../node_modules/@capacitor/filesystem"
+  CapacitorGeolocation:
+    :path: "../../node_modules/@capacitor/geolocation"
+  CapacitorHaptics:
+    :path: "../../node_modules/@capacitor/haptics"
+  CapacitorKeyboard:
+    :path: "../../node_modules/@capacitor/keyboard"
+  CapacitorPushNotifications:
+    :path: "../../node_modules/@capacitor/push-notifications"
+  CapacitorSplashScreen:
+    :path: "../../node_modules/@capacitor/splash-screen"
+  CapacitorStatusBar:
+    :path: "../../node_modules/@capacitor/status-bar"
+  CapacitorStorage:
+    :path: "../../node_modules/@capacitor/storage"
+  CodetrixStudioCapacitorGoogleAuth:
+    :path: "../../node_modules/@codetrix-studio/capacitor-google-auth"
+  CordovaPlugins:
+    :path: "../capacitor-cordova-ios-plugins"
+
+SPEC CHECKSUMS:
+  AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  Capacitor: 838de9244464702bc67e3d47e81c471b79500059
+  CapacitorApp: 62db023a834f87bd8e1a1520ef58ab3bb9737fd9
+  CapacitorCamera: 04c853d49e4a6d3ca7266aa9a937b0d41b711999
+  CapacitorCommunityAppleSignIn: 742407384f88494cc6511245c22c2c11bc548acd
+  CapacitorCordova: d4a821a58b9b14452b05c583b0e52379e45810e5
+  CapacitorDevice: 2b336e2f5e7a37f402f58a19599564fb2e08bdd0
+  CapacitorFilesystem: aa599ce29edf0dd8b61821314a45e4323323e485
+  CapacitorGeolocation: b740e8f29a2b64283d37252408cf522a237787b4
+  CapacitorHaptics: 16228dbf7687e1b956c62b299faa78a3a801cff7
+  CapacitorKeyboard: 03e6cb058217b87c15ce460629d5157d1279d754
+  CapacitorPushNotifications: 765cd1e50c45a89db26d0db9a7ae8b80fb86e8b7
+  CapacitorSplashScreen: 9b071987b2d0af87fb420eff350a45a1ef3e179a
+  CapacitorStatusBar: 60760a8b549e0e74b6d60cda1125f238c6e5a637
+  CapacitorStorage: 12a7ea50894655affebaa79713c160aecfa4f939
+  CodetrixStudioCapacitorGoogleAuth: d5e1a1f1290426845dd90944b61a7c31c8542c70
+  CordovaPlugins: 263c98b8d7a66d6c919bd30b166d45837f0e8e06
+  GoogleSignIn: fd381840dbe7c1137aa6dc30849a5c3e070c034a
+  GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
+  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
+
+PODFILE CHECKSUM: 005d82f4af484604b26e49c69dde039a8c75a233
+
+COCOAPODS: 1.11.2
