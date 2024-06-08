@@ -1,0 +1,33 @@
+##we-moove-app
+
+#INSTALACIÒN
+
+-npm install --force
+-npm install -g @ionic/cli
+
+#jdk11
+
+  https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html
+
+requiere crear variables de entorno en windows o en su defecto configurarlas en android studio tanto en estructura de proyecto com en configuracion
+
+# gradle-4.2.1
+
+  https://gradle.org/releases/
+
+requiere crear variables de entorno en windows
+
+# para ejecutar via web
+ionic build
+npm run ng serve
+
+# para ejecutar via android studio
+ionic build
+npx cap sync android
+npx cap open android (por terminal en caso de no esta en android studio)
+
+o
+
+requiere virtualizar dispositivo
+-ionic capacitor run android
+

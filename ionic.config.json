@@ -1,0 +1,8 @@
+{
+  "name": "WeMooveApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "92886267"
+}
