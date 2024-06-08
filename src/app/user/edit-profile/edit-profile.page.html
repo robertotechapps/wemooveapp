@@ -1,0 +1,89 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <div class="buttons" slot="end" style="padding-right: 10px;">
+
+            <span [routerLink]="['/user-profile']"><ion-icon name="arrow-back"></ion-icon></span>
+
+        </div>
+        <ion-buttons slot="start">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{ 'EDIT_PROFILE' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="edit-content">
+    <div style="margin:20px;">
+        <h2 class="auth-title">
+            {{'INGRESA_TUS_DATOS_PARA_UNIRTE' | translate}}.
+        </h2>
+        <ion-list class="inputs-list" lines="full">
+            <form [formGroup]="editForm" (ngSubmit)="updateUser()">
+                <ion-item class="input-item ">
+                    <ion-input type="text" placeholder="{{'NOMBRE' | translate}}" formControlName="firstname" clearInput></ion-input>
+                </ion-item>
+                <div class="error-container">
+                    <ng-container *ngFor="let validation of validation_messages.firstname">
+                        <div class="error-message" *ngIf="editForm.get('firstname').hasError(validation.type) && (editForm.get('firstname').dirty || editForm.get('firstname').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span>{{ validation.message }}</span>
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item class="input-item ">
+                    <ion-input type="text" placeholder="{{'APELLIDO' | translate}}" formControlName="lastname" clearInput></ion-input>
+                </ion-item>
+                <div class="error-container">
+                    <ng-container *ngFor="let validation of validation_messages.lastname">
+                        <div class="error-message" *ngIf="editForm.get('lastname').hasError(validation.type) && (editForm.get('lastname').dirty || editForm.get('lastname').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span>{{ validation.message }}</span>
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-item class="input-item item-label-floating">
+                    <ion-label position="floating"> {{ 'GENERO' | translate }}</ion-label>
+                    <ion-select formControlName="gender" cancelText="Cancel" okText="OK" class="form-app item-select">
+                        <ion-select-option *ngFor="let gender of genders" [value]="gender" class="form-app item-select option">{{ gender }}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item class="input-item" (click)="showPicker =!showPicker">
+                    <ion-label position="floating"> {{ 'FECHA_NAC' | translate }}</ion-label>
+                    <ion-input formControlName="fechaNac" value="Readonly" inputmode="none" ></ion-input>
+                    
+                </ion-item>
+                <ion-datetime *ngIf="showPicker" #datetime presentation="date" style="color: #82287f;"
+                value="{{fechaNac}}" (ionChange)="formatDate(datetime.value)" showDefaultButtons="true"
+                (ionCancel)="showPicker=false;"
+                 ></ion-datetime>
+                <ion-item class="input-item">
+                    <ion-label position="floating"> {{ 'PESO' | translate }}</ion-label>
+                    <ion-input type="number" formControlName="weight" inputmode="numeric"></ion-input>
+                </ion-item>
+                <ion-item class="input-item">
+                    <ion-label position="floating"> {{ 'ESTATURA' | translate }}</ion-label>
+                    <ion-input type="number" formControlName="height" inputmode="numeric"></ion-input>
+                    <!-- <app-counter-input formControlName="height"></app-counter-input> -->
+                </ion-item>
+
+                <ion-list class="counter-list" lines="full">
+                    <ion-item class="counter-item input-item">
+
+                        <ion-label> {{ 'ENTIDAD_BENEFICA' | translate }}</ion-label>
+                        <ion-label *ngIf="entBeneficaName !=='' ">{{entBeneficaName}}</ion-label>
+                        <ion-icon class="icon-search" slot="end" name="search" (click)="openEntidadModal()"></ion-icon>
+                    </ion-item>
+
+                </ion-list>
+
+                <ion-col size="12" class="ion-text-center">
+                    <ion-button type="submit" expand="block" [disabled]="!editForm.valid" style="background: #3d3645; color: #FFF; margin:auto; border-radius: 40px;" fill="clear" shape="round">{{ 'GUARDAR' | translate }}</ion-button>
+                </ion-col>
+            </form>
+        </ion-list>
+    </div>
+</ion-content>

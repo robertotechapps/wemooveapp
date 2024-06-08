@@ -1,0 +1,26 @@
+:host {
+    --page-margin: var(--app-broad-margin);
+    --page-background: var(--app-background-shade);
+}
+
+.back {
+    --background: url(../../assets/img/main-bg.png) ;
+}
+
+.splash-screen-content {
+    --background: var(--ion-color-primary);
+    --padding-start: var(--page-margin);
+    --padding-end: var(--page-margin);
+    --padding-top: var(--page-margin);
+    --padding-bottom: var(--page-margin);
+
+}
+
+.centered {
+    position: fixed;
+    height: 20vh;
+    top: 50%;
+    left: 50%;
+    margin-top: -10vh;
+    margin-left: -10vh;
+  }

@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <ion-buttons slot="start">
+            <ion-buttons slot="start">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{ 'LOGROS' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col size="12">
+                    <app-aspect-ratio [ratio]="{w:1, h:1}">
+                        <app-image-shell animation="spinner" class="add-overlay" [src]="achievement.icon" [alt]=""></app-image-shell>
+                    </app-aspect-ratio>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <h1 style="font-size: 2.5em; font-weight: 900;">Record superado</h1>
+                    <h3>{{achievement.name}}</h3>
+                    <h3>Distancia: 3 km - Tiempo: 05:45</h3>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-button (click)="compartir()" expand="block" fill="outline" shape="round">
+                        Compartir
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

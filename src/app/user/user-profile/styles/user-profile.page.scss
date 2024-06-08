@@ -1,0 +1,354 @@
+@import "../../../../theme/mixins/scrollbars";
+@import "../../../../theme/mixins/inputs/select-alert";
+// Custom variables
+// Note:  These ones were added by us and have nothing to do with Ionic CSS Custom Properties
+:host {
+    --page-margin: var(--app-narrow-margin);
+    --page-border-radius: var(--app-fair-radius);
+    --page-actions-padding: 5px;
+    --page-friends-gutter: calc(var(--page-margin) / 2);
+    --page-pictures-gutter: calc(var(--page-margin) / 2);
+}
+
+.back {
+    --background: url(../../../../assets/img/main-bg.png);
+}
+
+ion-menu-button {
+    color: var(--ion-color-secondary);
+}
+
+ion-content {
+    --background: var(--page-background);
+}
+
+.badge {
+    top: -40px;
+}
+
+.dark {
+    --background: var(--page-background);
+}
+
+.usd {
+    height: 80px;
+    margin-left: 10%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: var(--ion-color-primary);
+    color: white;
+    width: 40%;
+    float: left;
+    padding: 30px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.coins {
+    height: 80px;
+    margin-right: 10%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: var(--ion-color-primary);
+    color: white;
+    width: 40%;
+    float: left;
+    padding: 30px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.total {
+    font-size: 20px;
+    color: #FFF;
+    padding-top: 10px;
+}
+
+.item-inner {
+    border: 0;
+}
+
+.rounded {
+    background: var(--ion-color-lightest);
+    margin-top: 40px;
+}
+
+.circle-red {
+    background: #ff8554;
+    padding: 15px;
+    border-radius: 50px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.circle-orange {
+    background-color: rgb(255, 102, 0);
+    padding: 15px;
+    border-radius: 50px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.circle-purple {
+    background-color: var(--ion-color-primary);
+    padding: 15px;
+    border-radius: 50px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.circle-blue {
+    background-color: var(--ion-color-secondary);
+    padding: 15px;
+    border-radius: 50px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.edit {
+    color: #FFF;
+    margin-left: 65px;
+    border: 1px solid gray;
+    border-radius: 100px;
+    padding: 5px;
+    background: #26a49e;
+    cursor: pointer;
+}
+
+.circle-green {
+    background-color: #17e791;
+    padding: 15px;
+    border-radius: 50px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.circle-yellow {
+    background: gold;
+    padding: 15px;
+    border-radius: 50px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.boxprofile {
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.avatar {
+    border-radius: 100px;
+    border: 1px solid gray;
+}
+
+.data {
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+}
+
+.small {
+    font-weight: bold;
+    color: #fff;
+    font-size: 18px;
+}
+
+ion-title {
+    color: #FFF;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 16px;
+    ;
+}
+
+// Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
+.user-details-section {
+    --ion-grid-column-padding: 0px;
+    margin: var(--page-margin);
+    .user-image-wrapper {
+        max-width: 26%;
+    }
+    .user-info-wrapper {
+        padding-left: var(--page-margin);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        .user-data-row {
+            padding-bottom: var(--page-margin);
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            .user-name {
+                margin: 0px 0px 5px;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
+            .user-title {
+                margin: 0px;
+                color: var(--ion-color-medium);
+                font-size: 16px;
+            }
+            .membership-col {
+                padding-left: var(--page-margin);
+                flex-grow: 0;
+            }
+            .user-membership {
+                display: block;
+                background-color: var(--ion-color-secondary);
+                color: var(--ion-color-lightest);
+                border-radius: var(--app-narrow-radius);
+                padding: 4px 8px;
+                text-align: center;
+                font-weight: 500;
+                font-size: 14px;
+            }
+        }
+        .actions-row {
+            --ion-grid-columns: 10;
+            --ion-grid-column-padding: var(--page-actions-padding);
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            margin-left: calc(var(--page-actions-padding) * -1);
+            margin-right: calc(var(--page-actions-padding) * -1);
+            .main-actions {
+                flex-grow: 0;
+                padding-top: 0px;
+                padding-bottom: 0px;
+                margin-left: calc(var(--page-actions-padding) * -1);
+                margin-right: calc(var(--page-actions-padding) * -1);
+                display: flex;
+                .call-to-action-btn {
+                    padding: 0px var(--page-actions-padding);
+                    margin: 0px;
+                }
+            }
+            .secondary-actions {
+                flex-grow: 0;
+                padding-top: 0px;
+                padding-bottom: 0px;
+                .more-btn {
+                    --padding-start: 4px;
+                    --padding-end: 4px;
+                    margin: 0px;
+                }
+            }
+        }
+    }
+}
+
+.user-stats-section {
+    --ion-grid-column-padding: 0px;
+    margin: calc(var(--page-margin) * 2) var(--page-margin) var(--page-margin);
+    padding-bottom: var(--page-margin);
+    border-bottom: 1px solid var(--ion-color-light-shade);
+    .user-stats-wrapper {
+        text-align: center;
+        .stat-value {
+            display: block;
+            padding-bottom: 5px;
+            color: var(--ion-color-dark-shade);
+            font-weight: 500;
+            font-size: 18px;
+        }
+        .stat-name {
+            font-size: 18px;
+            color: var(--ion-color-medium);
+            font-weight: bold;
+        }
+    }
+}
+
+.user-preferences-wrapper {
+    --ion-grid-column-padding: 0px;
+    padding: var(--page-margin);
+    .preference-name {
+        margin: 0px 0px 5px;
+        font-size: 16px;
+    }
+    .preference-value {
+        margin: 0px 0px calc(var(--page-margin) / 2);
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--ion-color-dark-tint);
+    }
+}
+
+.user-friends-section {
+    margin: calc(var(--page-margin) * 2) var(--page-margin) var(--page-margin);
+    padding-bottom: var(--page-margin);
+    border-bottom: 1px solid var(--ion-color-light-shade);
+    .heading-row {
+        margin-bottom: var(--page-margin);
+        justify-content: space-between;
+        align-items: center;
+        .details-section-title {
+            margin: 0px;
+        }
+        .heading-call-to-action {
+            padding: calc(var(--page-margin) / 2) calc(var(--page-margin) / 4);
+            text-decoration: none;
+            color: var(--ion-color-secondary);
+        }
+    }
+    .friends-row {
+        --ion-grid-columns: 7; // We want to show three friends and a half. Each friend fills 2 cols => (3.5 * 2 = 7 cols)
+        --ion-grid-column-padding: 0px;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        will-change: scroll-position;
+        margin-left: calc(var(--page-margin) * -1);
+        margin-right: calc(var(--page-margin) * -1);
+        @include hide-scrollbars();
+        &::before,
+        &::after {
+            content: '';
+            // .friend-item has 8px of side padding, we need an extra 4px at the beginning and end to fill the 12px side margin of the view
+            flex: 0 0 calc(var(--page-margin) - var(--page-friends-gutter));
+        }
+        .friend-item {
+            --col-item-width: 2;
+            // SSR fix: Override ion-col styles
+            flex: 0 0 calc(calc(var(--col-item-width) / var(--ion-grid-columns, 12)) * 100%);
+            width: calc(calc(var(--col-item-width) / var(--ion-grid-columns, 12)) * 100%);
+            max-width: calc(calc(var(--col-item-width) / var(--ion-grid-columns, 12)) * 100%);
+            padding: 0px var(--page-friends-gutter);
+            .friend-name {
+                display: block;
+                text-align: center;
+                margin: var(--page-margin) 0px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+// Alerts and in general all overlays are attached to the body or ion-app directly
+// We need to use ::ng-deep to access it from here
+::ng-deep .language-alert {
+    @include select-alert();
+    // Variables should be in a deeper selector or after the mixin include to override default values
+    --select-alert-color: var(--ion-color-lightest);
+    --select-alert-background: var(--ion-color-primary);
+    --select-alert-margin: var(--app-fair-margin);
+    .alert-message {
+        display: none;
+    }
+}
+
+ion-content {
+    --background: url(../../../../assets/img/purple2.png);
+}
+
+ion-card-content {
+    padding: 10px;
+}
+
+ion-card {
+    padding: 5px;
+    background: #1b1926;
+    margin: 15px;
+    border-radius: 8px;
+    color: white;
+}

@@ -1,0 +1,236 @@
+<!--<ion-header align-title="center">
+    <ion-toolbar class="back">
+        <ion-title>{{'REGISTRATE' | translate}}</ion-title>
+        <div class="buttons" slot="end">
+            <ion-button (click)="volver()" style="padding-right: 10px;" slot="left">
+                <span><ion-icon name="arrow-back"></ion-icon></span>
+            </ion-button>
+
+        </div>
+    </ion-toolbar>
+</ion-header>-->
+
+<ion-toolbar class="back">
+    <a href="#" class="button button-clear back" style="padding-right: 10px;">
+        <span><ion-icon name="arrow-back"></ion-icon></span>
+    </a>
+    <ion-buttons slot="start">
+        <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+    </ion-buttons>
+    <ion-title>
+        {{ 'REGISTRATE' | translate }}
+    </ion-title>
+</ion-toolbar>
+
+<ion-content class="signup-content">
+    <form [formGroup]="signupForm" (ngSubmit)="doSignup()">
+        <ion-slides class="getting-started-slides" pager="false">
+            <ion-slide>
+                <div style="width:100%; margin:20px;">
+                    <h2 class="auth-title">
+                        {{'INGRESA_TUS_DATOS_PARA_UNIRTE' | translate}}.
+                    </h2>
+                    <ion-list class="inputs-list" lines="full">
+
+                        <ion-item class="input-item ">
+                            <!-- <ion-label position="floating">Name</ion-label> -->
+                            <ion-input type="text" placeholder="{{'NOMBRE' | translate}}" formControlName="firstname" clearInput></ion-input>
+                        </ion-item>
+                        <div class="error-container">
+                            <ng-container *ngFor="let validation of validation_messages.firstname">
+                                <div class="error-message" *ngIf="signupForm.get('firstname').hasError(validation.type) && (signupForm.get('firstname').dirty || signupForm.get('firstname').touched)">
+                                    <ion-icon name="information-circle-outline"></ion-icon>
+                                    <span>{{ validation.message | translate}}</span>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                        <ion-item class="input-item ">
+                            <!-- <ion-label position="floating">Last Name</ion-label> -->
+                            <ion-input type="text" placeholder="{{'APELLIDO' | translate}}" formControlName="lastname" clearInput></ion-input>
+                        </ion-item>
+                        <div class="error-container">
+                            <ng-container *ngFor="let validation of validation_messages.lastname">
+                                <div class="error-message" *ngIf="signupForm.get('lastname').hasError(validation.type) && (signupForm.get('lastname').dirty || signupForm.get('lastname').touched)">
+                                    <ion-icon name="information-circle-outline"></ion-icon>
+                                    <span>{{ validation.message | translate}}</span>
+                                </div>
+                            </ng-container>
+                        </div>
+
+                        <ion-item class="input-item">
+                            <ion-input type="email" placeholder="Email" formControlName="email" clearInput autocapitalize="off" inputmode="email"></ion-input>
+                        </ion-item>
+                        <div class="error-container">
+                            <ng-container *ngFor="let validation of validation_messages.email">
+                                <div class="error-message" *ngIf="signupForm.get('email').hasError(validation.type) && (signupForm.get('email').dirty || signupForm.get('email').touched)">
+                                    <ion-icon name="information-circle-outline"></ion-icon>
+                                    <span>{{ validation.message | translate}}</span>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div formGroupName="identity_verification">
+                            <!--    <ion-item class="input-item item-label-floating">
+                                <ion-label position="floating">{{'ID_TYPE' | translate}}</ion-label>
+                                <ion-select formControlName="doc_type" cancelText="Cancel" okText="OK">
+                                    <ion-select-option *ngFor="let doc_type of docTypes" [value]="doc_type">{{ doc_type }}</ion-select-option>
+                                </ion-select>
+                            </ion-item>-->
+                            <ion-item class="input-item ">
+                                <ion-input type="text" placeholder="Nro ID" formControlName="doc_number" clearInput></ion-input>
+                            </ion-item>
+                            <div class="error-container">
+                                <ng-container *ngFor="let validation of validation_messages.nro_doc">
+                                    <div class="error-message" *ngIf="signupForm.get('identity_verification').hasError(validation.type) && (signupForm.get('identity_verification').get('doc_number').dirty || signupForm.get('identity_verification').get('doc_number').touched)">
+                                        <ion-icon name="information-circle-outline"></ion-icon>
+                                        <span>{{ validation.message | translate}}</span>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div formGroupName="matching_passwords">
+                            <ion-item class="input-item ">
+                                <app-show-hide-password>
+                                    <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+                                </app-show-hide-password>
+                            </ion-item>
+                            <div class="error-container">
+                                <ng-container *ngFor="let validation of validation_messages.password">
+                                    <div class="error-message" *ngIf="signupForm.get('matching_passwords').get('password').hasError(validation.type) && (signupForm.get('matching_passwords').get('password').dirty || signupForm.get('matching_passwords').get('password').touched)">
+                                        <ion-icon name="information-circle-outline"></ion-icon>
+                                        <span>{{ validation.message | translate}}</span>
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <ion-item class="input-item ">
+                                <app-show-hide-password>
+                                    <!-- <ion-label position="floating">Password</ion-label> -->
+                                    <ion-input type="password" placeholder="Confirm Password" formControlName="confirm_password"></ion-input>
+                                </app-show-hide-password>
+                            </ion-item>
+                            <div class="error-container">
+                                <ng-container *ngFor="let validation of validation_messages.confirm_password">
+                                    <div class="error-message" *ngIf="signupForm.get('matching_passwords').get('confirm_password').hasError(validation.type) && (signupForm.get('matching_passwords').get('confirm_password').dirty || signupForm.get('matching_passwords').get('confirm_password').touched)">
+                                        <ion-icon name="information-circle-outline"></ion-icon>
+                                        <span>{{ validation.message | translate}}</span>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="error-container">
+                            <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+                                <div class="error-message" *ngIf="signupForm.get('matching_passwords').hasError(validation.type) && (signupForm.get('matching_passwords').get('confirm_password').dirty || signupForm.get('matching_passwords').get('confirm_password').touched)">
+                                    <ion-icon name="information-circle-outline"></ion-icon>
+                                    <span>{{ validation.message | translate}}</span>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ion-list>
+
+                    <ion-button (click)="continuar()" class="signup-btn" expand="block" [disabled]="!signupForm.valid">{{'SIGUIENTE' | translate}}</ion-button>
+                    <ion-row class="other-auth-options-row">
+                        <ion-button class="login-btn" fill="clear" [routerLink]="['/auth/login']">
+                            {{'YA_TIENES_UNA_CUENTA' | translate}}
+                        </ion-button>
+                    </ion-row>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div style="width:100%; margin:20px;">
+                    <h2 class="auth-title">
+                        {{'NECESITAMOS_VALIDAR_TU_IDENTIDAD' | translate}}
+                        <br />{{'REGISTRO_FOTO_1' | translate}}
+                    </h2>
+                    <div class="users-pictures-wrapper">
+                        <ion-row class="pictures-row">
+                            <ion-col size="6" class="picture-wrapper">
+                                <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                                    <app-image-shell [display]="'cover'" class="user-picture-image" [src]="frontPhotoId" [alt]="'user image'"></app-image-shell>
+                                </app-aspect-ratio>
+                            </ion-col>
+                            <ion-col size="6">
+                                <ion-button size="small" color="secondary" expand="block" fill="outline" (click)="cargarFoto(0)">{{'UPLOAD' | translate}}</ion-button>
+
+                            </ion-col>
+                        </ion-row>
+                    </div>
+
+                    <ion-button class="signup-btn" (click)="continuar()" expand="block" [disabled]="frontPhotoId == './assets/noImage.png'"> {{'SIGUIENTE' | translate}} </ion-button>
+                    <ion-row class="other-auth-options-row">
+                        <ion-button class="login-btn" fill="clear" [routerLink]="['/auth/login']">
+                            {{'YA_TIENES_UNA_CUENTA' | translate}}
+                        </ion-button>
+                    </ion-row>
+                    <div class="legal-stuff">
+                        {{'AL_CREAR_TU_CUENTA' | translate}} <br /> <a class="legal-action" (click)="showTermsModal()">{{'TERMINOS_Y_CONDICIONES' | translate}}</a>.
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div style="width:100%; margin:20px;">
+                    <h2 class="auth-title">
+                        {{'GRACIAS'| translate}} <br /> {{'REGISTRO_FOTO_2'| translate}}
+                    </h2>
+                    <div class="users-pictures-wrapper">
+                        <ion-row class="pictures-row">
+                            <ion-col size="6" class="picture-wrapper">
+                                <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                                    <app-image-shell [display]="'cover'" class="user-picture-image" [src]="backPhotoId" [alt]="'user image'"></app-image-shell>
+                                </app-aspect-ratio>
+                            </ion-col>
+                            <ion-col size="6">
+                                <ion-button size="small" color="secondary" expand="block" fill="outline" (click)="cargarFoto(1)">{{'UPLOAD' | translate}}</ion-button>
+
+                            </ion-col>
+                        </ion-row>
+                    </div>
+
+                    <ion-button (click)="continuar()" class="signup-btn" expand="block" [disabled]="!signupForm.valid">{{'SIGUIENTE' | translate}}</ion-button>
+                    <ion-row class="other-auth-options-row">
+                        <ion-button class="login-btn" fill="clear" [routerLink]="['/auth/login']">
+                            {{'YA_TIENES_UNA_CUENTA' | translate}}
+                        </ion-button>
+                    </ion-row>
+                    <div class="legal-stuff">
+                        {{'AL_CREAR_TU_CUENTA' | translate}}<br /> <a class="legal-action" (click)="showTermsModal()">{{'TERMINOS_Y_CONDICIONES' | translate}}</a>.
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div style="width:100%; margin:20px;">
+                    <h2 class="auth-title">
+                        {{'WELL_DONE'| translate}} <br /> {{'REGISTRO_FOTO_3'| translate}}
+                    </h2>
+
+
+                    <div class="users-pictures-wrapper">
+                        <ion-row class="pictures-row">
+                            <ion-col size="6" class="picture-wrapper">
+                                <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                                    <app-image-shell [display]="'cover'" class="user-picture-image" [src]="selfiePhotoId" [alt]="'user image'"></app-image-shell>
+                                </app-aspect-ratio>
+                            </ion-col>
+                            <ion-col size="6">
+                                <ion-button size="small" color="secondary" expand="block" fill="outline" (click)="cargarFoto(2)">{{'UPLOAD' | translate}}</ion-button>
+
+                            </ion-col>
+                        </ion-row>
+                    </div>
+
+                    <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!signupForm.valid">{{'FINALIZAR'| translate}}</ion-button>
+                    <ion-row class="other-auth-options-row">
+                        <ion-button class="login-btn" fill="clear" [routerLink]="['/auth/login']">
+                            {{'YA_TIENES_UNA_CUENTA' | translate}}
+                        </ion-button>
+                    </ion-row>
+                    <div class="legal-stuff">
+                        {{'AL_CREAR_TU_CUENTA' | translate}} <br /> <a class="legal-action" (click)="showTermsModal()">{{'TERMINOS_Y_CONDICIONES' | translate}}</a>.
+                    </div>
+                </div>
+            </ion-slide>
+        </ion-slides>
+
+    </form>
+</ion-content>

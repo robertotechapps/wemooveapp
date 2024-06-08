@@ -1,0 +1,149 @@
+:host {
+    --page-margin: var(--app-narrow-margin);
+    --page-border-radius: var(--app-fair-radius);
+    --page-actions-padding: 5px;
+    --page-friends-gutter: calc(var(--page-margin) / 2);
+    --page-pictures-gutter: calc(var(--page-margin) / 2);
+}
+
+.back {
+    --background: url(../../../assets/img/main-bg.png);
+}
+
+ion-menu-button {
+    color: var(--ion-color-secondary);
+}
+
+ion-title {
+    color: #FFF;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 16px;
+    ;
+}
+
+.edit-content {
+    --background: var(--page-background);
+    width: 100%;
+    .auth-title {
+        color: #FFF;
+        /*var(--ion-color-dark);*/
+        font-weight: normal;
+        margin-top: calc(var(--page-margin) / 2);
+        // margin-bottom: calc(var(--page-margin) * (3/2));
+        font-size: 18px;
+        ;
+    }
+    .users-pictures-wrapper {
+        padding: 0px var(--page-margin) var(--page-margin);
+        .pictures-row {
+            --ion-grid-columns: 10;
+            --ion-grid-column-padding: 0px;
+            margin: 0px calc(var(--page-users-pictures-gutter) * -1);
+            .picture-wrapper {
+                --col-item-width: 2;
+                // SSR fix: Override ion-col styles
+                flex: 0 0 calc(calc(var(--col-item-width) / var(--ion-grid-columns, 12)) * 100%);
+                width: calc(calc(var(--col-item-width) / var(--ion-grid-columns, 12)) * 100%);
+                max-width: calc(calc(var(--col-item-width) / var(--ion-grid-columns, 12)) * 100%);
+                padding: 0px var(--page-users-pictures-gutter);
+                .has-more-pictures {
+                    position: absolute;
+                    top: 0px;
+                    bottom: 0px;
+                    left: 0px;
+                    right: 0px;
+                    margin: 0px var(--page-users-pictures-gutter);
+                    background-color: rgba(var(--page-color-rgb), .70);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-decoration: none;
+                    z-index: 2;
+                    .pictures-count {
+                        font-size: 22px;
+                        color: var(--ion-color-primary);
+                        font-weight: 600;
+                        &::before {
+                            content: '+';
+                            font-size: 26px;
+                            color: var(--ion-color-lightest);
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+        .upload-picture-btn {
+            margin: calc(var(--page-margin) / 2) 0px 0px;
+        }
+    }
+    .inputs-list {
+        --ion-item-background: var(--page-background);
+        .input-item {
+            --padding-start: 0px;
+            --padding-end: 0px;
+            --inner-padding-end: 0px;
+            border-bottom: 1px solid #82287f;
+            color: #FFF;
+        }
+        .error-container {
+            .error-message {
+                margin: calc(var(--page-margin) / 2) 0px;
+                display: flex;
+                align-items: center;
+                color: var(--ion-color-danger);
+                font-size: 14px;
+                ion-icon {
+                    padding-inline-end: calc(var(--page-margin) / 2);
+                }
+            }
+        }
+    }
+    .signup-btn {
+        margin: calc(var(--page-margin) / 2) 0px;
+    }
+    .other-auth-options-row {
+        justify-content: flex-end;
+        align-items: center;
+        .login-btn {
+            --color: var(--ion-color-secondary);
+            margin: 0px;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    .social-auth-options {
+        .options-divider {
+            color: var(--ion-color-medium);
+            margin: var(--page-margin) 0px;
+            text-align: center;
+        }
+        .social-auth-btn {
+            margin: 0px;
+            &:not(:first-child) {
+                margin-top: var(--page-margin);
+            }
+        }
+    }
+    .legal-stuff {
+        text-align: center;
+        font-size: 14px;
+        margin: var(--page-margin) 0px;
+        color: var(--ion-color-medium);
+        .legal-action {
+            font-weight: 500;
+            color: var(--ion-color-secondary);
+            cursor: pointer;
+        }
+    }
+    .icon-search {
+        color: var(--ion-color-secondary);
+        border: 1px solid var(--ion-color-secondary);
+        border-radius: 50px;
+        padding: 5px;
+        cursor: pointer;
+    }
+}

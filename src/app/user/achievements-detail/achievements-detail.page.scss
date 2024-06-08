@@ -1,0 +1,70 @@
+@import "../../../theme/mixins/scrollbars";
+// Custom variables
+// Note:  These ones were added by us and have nothing to do with Ionic CSS Custom Properties
+// Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
+:host {
+    --page-margin: var(--app-narrow-margin);
+    --page-border-radius: var(--app-fair-radius);
+    --page-actions-padding: 5px;
+    --page-friends-gutter: calc(var(--page-margin) / 2);
+    --page-pictures-gutter: calc(var(--page-margin) / 2);
+}
+
+.back {
+    --background: url(../../../assets/img/main-bg.png);
+}
+
+ion-menu-button {
+    color: var(--ion-color-secondary);
+}
+
+ion-back-button {
+    color: var(--ion-color-secondary);
+}
+
+ion-content {
+    --background: var(--page-background);
+}
+
+ion-title {
+    color: #FFF;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 16px;
+    ;
+}
+
+ion-content {
+    --background: url(../../../assets/img/purple2.png);
+}
+
+ion-card-content {
+    padding: 10px;
+}
+
+ion-card {
+    padding: 5px;
+    background: #1b1926;
+    margin: 15px;
+    border-radius: 8px;
+    color: white;
+}
+
+.accomplished-achievement {
+    opacity: 1;
+    height: 70px;
+    width: 70px;
+    border-radius: 6px;
+    border: 2px solid white;
+    margin: 10px;
+}
+
+.active-achievement {
+    opacity: 0.4;
+    height: 70px;
+    width: 70px;
+    border-radius: 6px;
+    border: 2px solid white;
+    margin: 10px;
+}

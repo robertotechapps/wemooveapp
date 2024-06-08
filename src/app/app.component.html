@@ -1,0 +1,61 @@
+<ion-app dir="{{textDir}}">
+    <!-- when=false means that the split pane will never expand automatically -->
+    <!-- For more info check https://ionicframework.com/docs/api/split-pane -->
+    <ion-split-pane contentId="menu-content" when="false">
+        <ion-menu contentId="menu-content" class="app-sidemenu">
+            <ion-header>
+                <ion-toolbar>
+                    <ion-row class="user-stats-wrapper user-details-wrapper">
+                        <ion-col size="4" style="text-align:center">
+                            <app-aspect-ratio [ratio]="{w: 1, h: 1}" class="user-image">
+                                <app-image-shell [display]="'cover'" animation="spinner" [src]="avatarsrc" style="background-position: center center; border-radius:100px;">
+                                </app-image-shell>
+                            </app-aspect-ratio>
+                            <!-- <img [src]="avatarsrc" style="border-radius:100px">-->
+                        </ion-col>
+                        <ion-col class="user-info-wrapper" size="8">
+                            <h3 class="user-name">{{usrLogueado?.firstname}}</h3>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="user-stats-wrapper user-details-wrapper">
+                        <ion-col>
+                            <span class="user-stat-value">{{usrService.usuarioTotalAmount?.totalLogros}}</span>
+                            <span class="user-stat-name">{{'LOGROS' | translate}}</span>
+                        </ion-col>
+                        <ion-col>
+                            <span class="user-stat-value">{{usrService.usuarioTotalAmount?.totalDesafios}}</span>
+                            <span class="user-stat-name">{{'DESAFIOS' | translate}}</span>
+                        </ion-col>
+                    </ion-row>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content>
+                <ion-list>
+                    <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
+                        <ion-item (click)="onClick(p.url)">
+                            <ion-icon slot="start" [name]="p.ionicIcon? p.ionicIcon: ''"></ion-icon>
+                            <ion-label>
+                                {{p.title | translate}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+                <ion-list>
+                    <ion-list-header>
+                        <ion-label>{{'MI_CUENTA' | translate}}</ion-label>
+                    </ion-list-header>
+                    <ion-menu-toggle autoHide="false" *ngFor="let p of accountPages; let i = index">
+                        <ion-item (click)="onClick(p.url)">
+                            <ion-icon slot="start" [name]="p.ionicIcon? p.ionicIcon: ''"></ion-icon>
+                            <ion-label>
+                                {{p.title |translate}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+        <!-- Main app content get's rendered in this router-outlet -->
+        <ion-router-outlet id="menu-content"></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>

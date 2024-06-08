@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-toolbar class="back">
+
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+
+        <ion-buttons slot="end">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{ 'BILLETERA' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card color="primary">
+        <ion-row>
+            <ion-col size="3">
+                <img src="../../../assets/img/189709.png" width="50%" style="padding:8px;" />
+
+            </ion-col>
+            <ion-col size="5" style="padding-top:15px;">
+                <span *ngIf="profile.userDetail.account_id !== ''">My Wallet #{{profile.userDetail.account_id}}</span>
+            </ion-col>
+            <ion-col size="4">
+                <ion-button *ngIf="profile.userDetail.account_id !== ''" style="font-size: xx-small; width: 90px;" color="primary" (click)="enableWallet()">{{ 'EDIT' | translate }}</ion-button>
+            </ion-col>
+
+            <ion-col size="12" style="text-align: center;">
+                <form [formGroup]="walletForm" (ngSubmit)="storeWallet()" *ngIf="show === true">
+                    <ion-input placeholder="account_id" style="background: rgb(159, 28, 202); border-bottom: 2px solid; color: white; height:30px;" formControlName="account_id"></ion-input>
+                    <ion-button style="font-size: xx-small; width: 90px;" color="primary" type="submit">{{ 'SAVE' | translate }}</ion-button>
+                </form>
+                <ion-button *ngIf="profile.userDetail.account_id === ''" style="font-size: xx-small; width: 90px;" color="primary" (click)="enableWallet()">{{ 'ADD_WALLET' | translate }}</ion-button>
+                <ion-button style="font-size: xx-small; width: 90px;" *ngIf="profile.userDetail.account_id === ''" (click)="openWalletSite()">{{ 'CREATE_WALLET' | translate }}</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+    <ion-card color="primary">
+
+        <ion-row style="margin:20px;">
+            <ion-col size="6" class="ion-text-center">
+                <ion-card-subtitle color="primary">
+                    {{ 'ACCOUNT_BLCE' | translate }}
+                </ion-card-subtitle>
+                <ion-card-title style="color: white">${{balance}}</ion-card-title>
+            </ion-col>
+            <ion-col size="6" class="ion-text-center">
+                <ion-card-subtitle color="primary">
+                    {{ 'DONATION_BLCE' | translate }}
+                </ion-card-subtitle>
+                <ion-card-title style="color: white">{{total}} <img src="../../../assets/img/beatcoin_icon.png" style="width:40px; height:auto;"></ion-card-title>
+            </ion-col>
+        </ion-row>
+        <ion-footer>
+            <!-- <ion-row>
+                <ion-col size="4" style="text-align: center;">
+                    <ion-button style="font-size: xx-small; width: 90px;" color="primary" [routerLink]="['/worder']">{{ 'WITHDRAW' | translate }}</ion-button>
+                </ion-col>
+                <ion-col size="4" style="text-align: center;">
+                    <ion-button style="font-size: xx-small; width: 90px;" color="primary" disabled>{{ 'TRANSFER' | translate }}</ion-button>
+                </ion-col>
+
+                <ion-col size="4" style="text-align: center;">
+                    <ion-button style="color:gray;font-size: xx-small; width: 90px;" disabled [routerLink]="['/pay']">{{ 'PAY' | translate }}</ion-button>
+                </ion-col>
+            </ion-row> -->
+
+
+        </ion-footer>
+    </ion-card>
+    <ion-row>
+        <ion-list style="margin:15px;width: 100%; border-radius: 6px;">
+            <ion-list-header> {{ 'MOVEMENTS' | translate }} </ion-list-header>
+            <ion-item *ngFor="let wallet of movementsList;" [ngClass]="wallet.status == 0 ? 'active-wallet' : 'accomplished-wallet'">
+                <ion-avatar slot="start">
+                    <img src="../../../assets/img/icon.png" />
+                </ion-avatar>
+                <ion-label>
+                    <p>{{wallet.updated_at | fechaCorta}}</p>
+                </ion-label>
+                <ion-label slot="end">
+                    <p>{{wallet.amount}}BPM</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+    </ion-row>
+</ion-content>

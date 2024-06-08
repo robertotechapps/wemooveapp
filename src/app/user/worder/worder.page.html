@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar class="back">
+
+        <ion-buttons slot="start" style="padding-left:10px;">
+            <span [routerLink]="['/wallet']"><ion-icon name="arrow-back"></ion-icon></span>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{ 'RETRIEVE' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <form [formGroup]="worderForm" (ngSubmit)="saveWOrder()">
+            <h3 style="margin:25px;">{{available}} BPM {{ 'AVAILABLES' | translate }}</h3>
+            <ion-row style="margin:20px;">
+                <ion-col size="12" class="ion-text-center">
+                    <h1>
+                        <ion-input style="background: rgb(159, 28, 202); border-bottom: 2px solid; color: white;" formControlName="amount"></ion-input>
+                        <span style="font-size: small;">{{ 'AMOUNT_TO_RETRIEVE' | translate }} (BPMs)</span></h1>
+                </ion-col>
+            </ion-row>
+            <ion-row style="margin:20px;">
+                <ion-col size="12" class="ion-text-center">
+                    <ion-button class="login-btn" type="submit " expand="block"> {{ 'GUARDAR' | translate }}</ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
+    </ion-card>
+
+</ion-content>

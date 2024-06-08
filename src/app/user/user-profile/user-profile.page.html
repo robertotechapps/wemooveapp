@@ -1,0 +1,91 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{ 'PERFIL' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-row>
+            <ion-col size="12" style="text-align: center;">
+                <br />
+                <div style="width:30%; margin: 0px auto; padding-bottom: 1vh;">
+                    <app-aspect-ratio [ratio]="{w: 1, h: 1}" class="avatar">
+                        <app-image-shell [display]="'cover'" animation="spinner" [src]="profile?.userDetail?.avatar" style="background-position: center center;" (click)="cargarAvatar()">
+                        </app-image-shell>
+                    </app-aspect-ratio>
+                </div>
+                <span class="data">{{profile.userDetail?.firstname? profile.userDetail?.firstname.concat(' ',profile.userDetail?.lastname) : null}}</span><br/>
+                <!-- <span class="small">{{profile.userDetail?.country}}</span><br />-->
+                <ion-button color="primary" [routerLink]="['/edit-profile']">{{ 'EDIT' | translate }}</ion-button>
+            </ion-col>
+        </ion-row>
+
+    </ion-card>
+
+    <ion-card color="primary">
+        <ion-row style="margin:20px;">
+            <ion-col size="6" class="ion-text-center">
+                <ion-card-subtitle color="primary">
+                    {{ 'ACCOUNT_BLCE' | translate }}
+                </ion-card-subtitle>
+                <ion-card-title style="color: white">${{profile.totalAmounts?.totalUsd}}</ion-card-title>
+            </ion-col>
+            <ion-col size="6" class="ion-text-center">
+                <ion-card-subtitle color="primary">
+                    {{ 'DONATION_BLCE' | translate }}
+                </ion-card-subtitle>
+                <ion-card-title style="color: white">{{profile.totalAmounts?.totalCoins}} <img src="../../../assets/img/beatcoin_icon.png" style="width:40px;height:auto;"></ion-card-title>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-content class="ion-text-center">
+            <div style="width:33%; float: left; color: white;">
+                <img src="../../../assets/img/distance.png" width="60%"><br />
+                <!--  <span class="stat-name">{{ 'DISTANCIA' | translate }} <br />-->
+                <span style="color: white; font-size:medium"> kms <br /><strong> {{totalDistancia | number : '1.2-2'}}</strong></span>
+            </div>
+            <div style="width:33%; float: left;color: white;">
+                <img src="../../../assets/img/calories_2.png" width="60%"><br />
+                <!-- <span class="stat-name">{{ 'CALORIAS' | translate }} <br />-->
+                <span style="color: white; font-size:medium"> cals  <br /><strong> {{profile.totalAmounts?.totalCalorias | number : '1.2-2'}} </strong></span>
+            </div>
+            <div style="width:33%; float: left;color: white;">
+                <img src="../../../assets/img/time.png" width="60%"><br />
+                <!-- <span class="stat-name">{{ 'TIEMPO' | translate }}<br />-->
+                <span style="color: white; font-size:medium">  mins<br /><strong> {{stringTime}} </strong></span>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card color="primary">
+        <ion-card-content class="ion-text-center">
+            <div style="width:33%; float: left;">
+                <img src="../../../assets/img/activity.png" width="60%"><br />
+                <span>{{ 'ACTIVIDADES' | translate }}</span> <br />
+                <span style="color: white; font-size:medium"> <strong> {{profile.totalAmounts?.totalActividades}}</strong></span>
+            </div>
+            <div style="width:33%; float: left;">
+                <img src="../../../assets/img/logros.png" width="60%"><br />
+                <span>{{ 'LOGROS' | translate }}</span> <br />
+                <span style="color: white; font-size:medium"> <strong>  {{profile.totalAmounts?.totalLogros}}</strong></span>
+            </div>
+            <div style="width:33%; float: left;">
+                <img src="../../../assets/img/medalla.png" width="60%"><br />
+                <span>{{ 'DESAFIOS' | translate }}</span><br />
+                <span style="color: white; font-size:medium">  <strong>   {{profile.totalAmounts?.totalDesafios}}</strong></span>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
