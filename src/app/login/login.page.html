@@ -1,0 +1,70 @@
+<ion-content scroll="false" class="login-content">
+    <a href="#" class="button button-clear back" style="padding-right: 10px;">
+        <span><ion-icon name="arrow-back"></ion-icon></span>
+    </a>
+    <div class="slider-content login-content">
+        <div class="logo">
+            <img src="../../assets/img/logo.png" style="padding-bottom:0px" />
+            <br />
+            <img src="../../assets/img/logo_header.png" style="padding-top:20px" />
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+            <div class="two-btn">
+
+
+                <label class="item item-input main-btn" style="background-color: #2b2c40">
+                  <ion-input type="email" placeholder="Email" formControlName="email" class="item item-input main-btn" style="background-color: #2b2c40" autocapitalize="off" inputmode="email"></ion-input>
+                </label>
+                <div class="error-container">
+                    <ng-container *ngFor="let validation of validation_messages.email">
+                        <div class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span>{{ validation.message | translate}}</span>
+                        </div>
+                    </ng-container>
+                </div>
+                <label class="item item-input main-btn" style="background-color: #2b2c40">
+                 <!-- <app-show-hide-password>-->
+                    <ion-input type="password" class="item item-input main-btn" style="background-color: #2b2c40" [placeholder]="'CONTRASEÑA' | translate" formControlName="password">
+                     
+                    </ion-input>
+                 <!--  </app-show-hide-password>-->
+                  
+                </label>
+                <div class="error-container">
+                    <ng-container *ngFor="let validation of validation_messages.password">
+                        <div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span>{{ validation.message | translate }}</span>
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ion-button class="button button-block main-btn sec-main-bg-color bgbutton" type="submit" [disabled]="!loginForm.valid" expand="block">{{'INICIA_SESION' | translate}}</ion-button>
+            </div>
+        </form>
+
+        <div class="legal-stuff">
+            {{'INGRESA_CON_SOCIAL_NETWORK' | translate}}<br>
+            <ion-button *ngIf="isIos" [routerLink]="['/auth/verifyInvitation']" [queryParams]="{tipoLogin: 'ios'}" >
+                <ion-icon slot="icon-only" name="logo-apple"></ion-icon>
+            </ion-button>
+            <ion-button [routerLink]="['/auth/verifyInvitation']" [queryParams]="{tipoLogin: 'google'}">
+                <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+            </ion-button>
+        </div>
+
+        <div class="legal-stuff">
+            {{'AL_CREAR_TU_CUENTA' | translate}} <br /> <a class="legal-action" (click)="showTermsModal()">{{'TERMINOS_Y_CONDICIONES' | translate}}</a>.
+        </div>
+        <div class="center-text">
+            <ion-button class="forget-pass" fill="clear" [routerLink]="['/auth/forgot-password']">
+                {{'OLVIDASTE_TU_CONTRASENA' | translate}}
+            </ion-button>
+            <div class="two-btn">
+                <ion-button class="button main-btn bggbutton" expand="block" [routerLink]="['/auth/verifyInvitation']" [queryParams]="{tipoLogin: 'manual'}">{{'NO_TIENES_CUENTA_REGISTRATE' | translate}}</ion-button>
+            </div>
+            <p class="sec-main-bg-color" style="cursor: pointer;" [routerLink]="['/auth/verifyInvitation']"></p>
+        </div>
+    </div>
+</ion-content>

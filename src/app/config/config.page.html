@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            {{ 'CONFIGURACION' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item style="background: var(--page-background);">
+            <ion-label> {{ 'ABOUT_ME' | translate }}</ion-label>
+            <ion-icon slot="end" name="arrow-forward-outline" (click)="configUserData()"></ion-icon>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{ 'Measure_Units' | translate }}</ion-label>
+            <ion-select cancelText="Cancel" okText="OK" class="form-app item-select" value={{usrMeasureUnit}} (ionChange)="okMeasureUnit($event)">
+                <ion-select-option *ngFor="let unidadMedida of unidadesMedida" class="form-app item-select option" [value]="unidadMedida.code">{{ unidadMedida.name }}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <!-- <ion-item>
+            <ion-label>{{ 'COUNTRY' | translate }}</ion-label>
+            <ion-select cancelText="Cancel" okText="OK" class="form-app item-select" value={{usrCountry}} (ionChange)="okCountry($event)">
+                <ion-select-option *ngFor="let pais of paises" class="form-app item-select option">{{ pais }}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        -->
+        <ion-item>
+            <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
+            <ion-select cancelText="Cancel" okText="OK" class="form-app item-select" value={{usrLang}} (ionChange)="ok($event)">
+                <ion-select-option *ngFor="let idioma of idiomas" class="form-app item-select option" [value]="idioma.code">{{ idioma.name }}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{ 'ABOUT' | translate }}</ion-label>
+            <ion-icon slot="end" name="arrow-forward-outline" (click)="showAboutModal()"></ion-icon>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{ 'TERMINOS_Y_CONDICIONES' | translate }}</ion-label>
+            <ion-icon slot="end" name="arrow-forward-outline" (click)="showTermsPage()"></ion-icon>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{ 'PRIVACY_POLICY' | translate }}</ion-label>
+            <ion-icon slot="end" name="arrow-forward-outline" (click)="showPrivacyPage()"></ion-icon>
+        </ion-item>
+        <!--<ion-item>
+            <ion-label>{{ 'REMOVE' | translate }}</ion-label>
+            <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+        </ion-item>
+    -->
+        <!-- <ion-item>
+            <ion-button (click)="cerrarSesion()" expand="block" fill="clear" shape="round" color="secondary">
+                {{ 'LOGOUT' | translate }}
+            </ion-button>
+        </ion-item>
+        <ion-item>
+            <ion-button (click)="eliminarCuenta()" expand="block" fill="clear" shape="round" color="secondary">
+                {{ 'REMOVE_ACCOUNT' | translate }}
+            </ion-button>
+        </ion-item> -->
+    </ion-list>
+</ion-content>

@@ -1,0 +1,74 @@
+:host {
+    --page-margin: var(--app-narrow-margin);
+    --page-border-radius: var(--app-fair-radius);
+    --page-actions-padding: 5px;
+    --page-friends-gutter: calc(var(--page-margin) / 2);
+    --page-pictures-gutter: calc(var(--page-margin) / 2);
+    --background: var(--page-background);
+}
+
+.back {
+    --background: url(../../assets/img/main-bg.png);
+}
+
+ion-menu-button {
+    color: var(--ion-color-secondary);
+}
+ion-item {
+    background: var(--page-background);
+    color: var(--ion-color-secondary);
+}
+    // Menu list items
+    ion-list {
+        --ion-text-color: var(--ion-color-light-shade);
+        --ion-text-color-rgb: var(--ion-color-light-shade-rgb);
+        --ion-item-background: var(--page-background);
+        --ion-item-border-color: transparent;
+        ion-list-header {
+            --color: rgba(var(--ion-color-light-shade-rgb), 0.6);
+            text-transform: uppercase;
+            box-shadow: inset 0px -4px 8px -2px var(--page-headers-shadow-color);
+            padding-inline-start: var(--page-margin);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        ion-item {
+            --border-width: 0px !important;
+            --padding-start: var(--page-margin);
+            --background-activated: var(--ion-color-medium);
+        }
+        ion-icon {
+            color: var(--ion-color-secondary);
+        }
+    }
+.item-native, .item-native::after
+{
+    background: var(--page-background);
+    color: var(--ion-color-secondary);
+}
+
+ion-content {
+    --background: var(--page-background);
+    color: white;
+}
+
+ion-title {
+    color: #FFF;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 16px;
+    ;
+}
+
+ion-card-content {
+    padding: 10px;
+}
+
+ion-card {
+    padding: 5px;
+    background: #1b1926;
+    margin: 15px;
+    border-radius: 8px;
+    color: white;
+}

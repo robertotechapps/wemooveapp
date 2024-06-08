@@ -1,0 +1,101 @@
+<ion-header align-title="center">
+    <ion-toolbar class="back">
+        <ion-buttons slot="start">
+            <img src="./assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title style="display: contents;"> Elegí tu Entidad</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()"><span><ion-icon name="close"></ion-icon></span></ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div style="margin:10px;" *ngIf="!showDetail">
+
+        <p class="title">Elegí la entidad benéfica por la cual vas a entrenar. <br />Al elegirla, WeMoove le donará un valor equivalente al monto que ganes con tus desafíos.</p>
+
+        <!--  <ion-col *ngFor="let charity of charityList;" class="category-item travel-category" size="6" >-->
+
+        <ion-card (click)="dismiss(charity.id, charity.name)" *ngFor="let charity of charityList;">
+
+            <ion-card-content>
+                <ion-row>
+                    <ion-col size="4" style="text-align: center;">
+                        <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                            <app-image-shell [display]="'cover'" style="background-position: center center;" class="user-image" animation="spinner" [src]="charity.logo"></app-image-shell>
+
+                        </app-aspect-ratio>
+                    </ion-col>
+
+                    <ion-col size="8">
+                        <ion-card-title style="font-size: small; text-align: left; padding-bottom:10px;">{{charity.name}} </ion-card-title>
+                        <ion-row>
+                            <ion-col size="6">
+                                <ion-button fill="clear" shape="round" style="font-size:x-small" color="secondary" (click)="goToDetails(charity)">ver más</ion-button>
+                            </ion-col>
+                            <ion-col size="6">
+                                <ion-button fill="clear" shape="round" style="font-size:x-small" color="secondary" (click)="dismiss(charity.id, charity.name)">elegir</ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+
+            </ion-card-content>
+
+
+        </ion-card>
+
+        <!--   </ion-col>-->
+
+
+    </div>
+    <div style="margin:10px;" *ngIf="showDetail">
+        <ion-card>
+            <ion-card-content>
+                <ion-row>
+                    <ion-col size="12" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                        <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                            <app-image-shell [display]="'cover'" style="background-position: center center; width:50%;height:50%; margin:auto" class="user-image" animation="spinner" [src]="charityDetail.logo"></app-image-shell>
+                            <br />
+                            <ion-card-title style="text-align: center;">{{charityDetail.name}} </ion-card-title>
+                            <!-- -->
+                        </app-aspect-ratio>
+                    </ion-col>
+                    <ion-col size="12" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                        <ion-text>{{charityDetail.cause}}</ion-text>
+
+                    </ion-col>
+                    <ion-col size="12" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                        <ion-text>{{charityDetail.web}}</ion-text>
+                        <ion-text>{{charityDetail.objectives}}</ion-text><br />
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-text>{{charityDetail.total_donations}} BMPs</ion-text>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+
+        <!--<p class="title">{{charityDetail.name}}</p>
+        <ion-row class="category-list">
+            <ion-col class="category-item travel-category">
+                <ion-card>
+
+                    <ion-card-content>
+                        <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                            <app-image-shell [display]="'cover'" style="background-position: center center;" class="user-image" animation="spinner" [src]="charityDetail.logo"></app-image-shell>
+                        </app-aspect-ratio>
+                        <ion-card-title>
+                            <app-text-shell [data]=charityDetail.cause></app-text-shell>
+                        </ion-card-title>
+                        <ion-card-subtitle>{{charityDetail.web}}</ion-card-subtitle>
+                        <ion-card-subtitle>{{charityDetail.objectives}}</ion-card-subtitle>
+
+                    </ion-card-content>
+                </ion-card>
+
+            </ion-col>
+
+        </ion-row>-->
+    </div>
+</ion-content>

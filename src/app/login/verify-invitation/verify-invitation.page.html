@@ -1,0 +1,39 @@
+<ion-header>
+
+    <ion-toolbar class="back">
+        <a href="#" class="button button-clear back" style="padding-right: 10px;">
+            <span><ion-icon name="arrow-back"></ion-icon></span>
+        </a>
+        <ion-buttons slot="start">
+            <img src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>{{'REGISTRATE' | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-content">
+
+    <form [formGroup]="verifyForm" (ngSubmit)="doSignup()">
+        <div style="width:90%; margin:20px;">
+            <h2 class="auth-title" style="color:white;">
+                Ingresá tu código de invitación
+            </h2>
+            <ion-list class="inputs-list" lines="full">
+                <ion-item class="input-item" style="background:none;">
+                    <ion-input type="text" placeholder="Code" formControlName="code" clearInput></ion-input>
+                </ion-item>
+                <div class="error-container">
+                    <ng-container *ngFor="let validation of validation_messages.code">
+                        <div class="error-message" *ngIf="verifyForm.get('code').hasError(validation.type) && (verifyForm.get('code').dirty || verifyForm.get('code').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span>{{ validation.message }}</span>
+                        </div>
+                    </ng-container>
+                </div>
+            </ion-list>
+
+            <ion-button class="signup-btn" type="submit" expand="block" [disabled]="!verifyForm.valid">{{'INGRESAR' | translate}}</ion-button>
+        </div>
+    </form>
+
+</ion-content>

@@ -1,0 +1,50 @@
+:host {
+    --page-margin: var(--app-broad-margin);
+    //--page-background: var(--app-background-shade);
+    --page-color-rgb: 235, 187, 0;
+}
+
+.login-content {
+    --background: var(--page-background);
+    width: 100%;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.forget-pass {
+    color: #FFF;
+}
+
+.login-content .logo img {
+    height: auto;
+    width: 300px;
+    padding: 40px;
+    /* margin-top: 60px;
+    margin-bottom: 10px;*/
+}
+
+.bgbutton {
+    background: #82287f !important;
+}
+
+.bggbutton {
+    background: #6d6b6d !important;
+}
+
+.back {
+    --background: url(../../../assets/img/main-bg.png);
+}
+
+.legal-stuff {
+    text-align: center;
+    font-size: 14px;
+    margin: var(--page-margin) 0px;
+    color: var(--ion-color-medium);
+    .legal-action {
+        font-weight: 500;
+        color: var(--ion-color-secondary);
+        cursor: pointer;
+    }
+}
