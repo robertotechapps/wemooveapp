@@ -1,0 +1,145 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <ion-buttons slot="start" style="padding-left:10px;">
+            <span [routerLink]="['/challenges-user']"><ion-icon name="arrow-back"></ion-icon></span>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{ 'DESAFIO' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item *ngIf="(challengeSer.isLoadingChallenge$ | async)"style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-col size="3">
+            <ion-thumbnail>
+                <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+            </ion-thumbnail>
+        </ion-col>
+        <ion-col size="9">
+            <ion-label>
+                <h3 style="height: 5vh;">
+                    <ion-skeleton-text [animated]="true" ></ion-skeleton-text>
+                </h3>
+                <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+                <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+            </ion-label>
+        </ion-col>
+    </ion-item>
+    <p style="color:white; font-size:large; margin:25px; margin-bottom:10px;">{{challenge?.name}}</p>
+    <ion-card *ngIf="!(challengeSer.isLoadingChallenge$ | async)" >
+        <ion-card-content>
+            <span style="color: white; font-size:small">{{ 'TIPO_DE_ACTIVIDAD' | translate }}</span><br />
+            <span style="color: white; font-size:large">{{challenge?.activity_type?.name}}</span>
+        </ion-card-content>
+    </ion-card>
+    <p style="color:white; font-size:large; margin:25px; margin-bottom:10px;">Targets</p>
+    <ion-item *ngIf="(challengeSer.isLoadingChallenge$ | async)"style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-col size="3">
+            <ion-thumbnail>
+                <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+            </ion-thumbnail>
+        </ion-col>
+        <ion-col size="9">
+            <ion-label>
+                <h3 style="height: 5vh;">
+                    <ion-skeleton-text [animated]="true" ></ion-skeleton-text>
+                </h3>
+                <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+                <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+            </ion-label>
+        </ion-col>
+    </ion-item>
+    <ion-card *ngIf="!(challengeSer.isLoadingChallenge$ | async)" >
+        <ion-card-content>
+            <ion-row>
+                <ion-col size="4" *ngIf="challenge?.target_distance != null">
+                    <span style="color: white; font-size:small"> {{ 'DISTANCIA' | translate }}</span><br />
+                    <span style="color: white; font-size:x-large">{{challenge?.target_distance}}</span><span style="color: white; font-size:x-small">&nbsp;Kms</span>
+                </ion-col>
+                <ion-col size="4" *ngIf="challenge?.target_duration != null">
+                    <span style="color: white; font-size:small"> {{ 'TIEMPO' | translate }}</span><br />
+                    <span style="color: white; font-size:x-large">{{challenge?.target_duration}}</span><span style="color: white; font-size:x-small">&nbsp;Hs</span>
+                </ion-col>
+                <ion-col size="4" *ngIf="challenge?.target_calories != null">
+                    <span style="color: white; font-size:small"> {{ 'CALORIAS' | translate }}</span><br />
+                    <span style="color: white; font-size:x-large">{{challenge?.target_calories}}</span><span style="color: white; font-size:x-small">&nbsp;Cal</span>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+    <p style="color:white; font-size:large; margin:25px; margin-bottom:10px;">{{'PREMIO' | translate}}</p>
+    <ion-item *ngIf="(challengeSer.isLoadingChallenge$ | async)"style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-col size="3">
+            <ion-thumbnail>
+                <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+            </ion-thumbnail>
+        </ion-col>
+        <ion-col size="9">
+            <ion-label>
+                <h3 style="height: 5vh;">
+                    <ion-skeleton-text [animated]="true" ></ion-skeleton-text>
+                </h3>
+                <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+                <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+            </ion-label>
+        </ion-col>
+    </ion-item>   
+    <ion-card *ngIf="!(challengeSer.isLoadingChallenge$ | async)" >
+        <ion-card-content>
+            <ion-row>
+                <ion-col size="6">
+                    <span style="color: white; font-size:small"> {{ 'PREMIO' | translate }}</span><br />
+                    <span style="color: white; font-size:x-large">{{challenge?.coin_award}}</span>
+                    <img src="../../../assets/img/beatcoin_icon.png">
+                    <!--<span style="color: white; font-size:x-small">&nbsp;BPM</span>-->
+                </ion-col>
+                <ion-col size="6">
+                    <span style="color: white; font-size:small"> {{ 'PREMIO PARA BENEF' | translate }}</span><br />
+                    <span style="color: white; font-size:x-large">{{challenge?.coin_award}}</span>
+                    <img src="../../../assets/img/beatcoin_icon.png">
+                    <!--<span style="color: white; font-size:x-small">&nbsp;BPM</span>-->
+                </ion-col>
+
+
+            </ion-row>
+
+        </ion-card-content>
+    </ion-card>
+    <p style="color:white; font-size:large; margin:25px; margin-bottom:10px;">{{'MY_CHALLENGE' | translate}}</p>
+    <ion-item *ngIf="(challengeSer.isLoadingChallenge$ | async)"style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-col size="3">
+            <ion-thumbnail>
+                <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+            </ion-thumbnail>
+        </ion-col>
+        <ion-col size="9">
+            <ion-label>
+                <h3 style="height: 5vh;">
+                    <ion-skeleton-text [animated]="true" ></ion-skeleton-text>
+                </h3>
+                <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+                <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+            </ion-label>
+        </ion-col>
+    </ion-item>
+    <ion-card *ngIf="!(challengeSer.isLoadingChallenge$ | async)"     >
+        <ion-card-content>
+            <ion-row>
+                <ion-col size="6">
+                    <span style="color: white; font-size:small"> {{ 'STARTED_ON' | translate }}</span><br />
+                    <span style="color: white; font-size:medium">{{startedOn }}</span>
+                </ion-col>
+                <ion-col size="6">
+                    <span style="color: white; font-size:small"> {{ 'FINISHED_BY' | translate }}</span><br />
+                    <span style="color: white; font-size:medium">{{finishedBy}}</span>
+                </ion-col>
+            </ion-row>
+
+        </ion-card-content>
+
+    </ion-card>
+</ion-content>

@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <ion-buttons slot="start" style="padding-left:10px;">
+            <span [routerLink]="['/activities']"><ion-icon name="arrow-back"></ion-icon></span>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{ 'DESAFIOS' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list style="background: transparent;" *ngIf="(chaService.isLoadingChallengeList$ | async)" >
+        <ion-item *ngFor="let a of [1,2,3]" style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+            <ion-col size="3">
+                <ion-thumbnail>
+                    <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+                </ion-thumbnail>
+            </ion-col>
+            <ion-col size="9">
+                <ion-label>
+                    <h3 style="height: 5vh;">
+                        <ion-skeleton-text [animated]="true" ></ion-skeleton-text>
+                    </h3>
+                    <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+                    <p style="height: 4vh;"><ion-skeleton-text [animated]="true" ></ion-skeleton-text></p>
+                </ion-label>
+            </ion-col>
+        </ion-item>
+    </ion-list>
+
+    <ion-card style="background-color: #1d1c29; border-radius: 8px;margin:25px" 
+        *ngIf="!(chaService.isLoadingChallengeList$ | async) && challengeList.length==0" class="background">
+        <ion-row>
+            <ion-col size="3">
+                <ion-avatar>
+                    <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                        <app-image-shell class="user-image" animation="spinner" src="./assets/img/Challenges.png"></app-image-shell>
+                    </app-aspect-ratio>
+                    <!-- <img src="{{challenge.activity_type?.icon}}" /> -->
+                </ion-avatar>
+            </ion-col>
+            <ion-col size="9">
+                <ion-card-title> {{ 'UPS' | translate }}</ion-card-title>
+                <ion-card-content>
+                    <h3> {{ 'SIN_DESAFIOS' | translate }}</h3>
+                </ion-card-content>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-col size="12" *ngIf="!(chaService.isLoadingChallengeList$ | async)" >
+        <ion-card *ngFor="let challenge of challengeList;" style="background-color: #1d1c29; border-radius: 8px;margin:25px">
+            <ion-card-content>
+                <ion-row>
+                    <ion-col size="3">
+                        <ion-avatar>
+                            <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                                <app-image-shell class="user-image" color="primary" animation="spinner" src="{{challenge.activity_type?.icon}}"></app-image-shell>
+                            </app-aspect-ratio>
+                        </ion-avatar>
+                    </ion-col>
+                    <ion-col size="9">
+                        <ion-card-title style="font-size: large;color:white;">{{challenge.name}}<img src="../../../assets/img/medalla.png" style="width:33px; height:auto; float:right;" /></ion-card-title>
+                        <ion-row>
+                            <ion-col size="6">
+                                <span style="font-size:x-small;color:white;">Starts </span><br />
+                                <span style="font-size:medium;color:white;">{{challenge.public_init_date | date: 'dd/MM/yyyy'}}</span>
+                            </ion-col>
+                            <ion-col size="6">
+                                <span style="font-size:x-small;color:white;">Ends by</span><br />
+                                <span style="font-size:medium;color:white;">{{challenge.public_end_date | date: 'dd/MM/yyyy'}}</span>
+                            </ion-col>
+                        </ion-row>
+    
+    
+                    </ion-col>
+    
+                    <ion-col size="6">
+                        <ion-button style="background: #3d3645; color: #FFF; margin:auto; border-radius: 40px;" fill="clear" shape="round" (click)="verDesafio(challenge.id)">{{ 'SEE' | translate }}</ion-button>
+    
+                    </ion-col>
+                    <ion-col size="6" *ngIf="!user?.currentChallenge?.challenge">
+                        <ion-button style="background: #8a4ccf; color: #FFF; margin:auto; border-radius: 40px; float:right" fill="clear" shape="round" (click)="joinChallenge(challenge.id)">{{ 'JOIN' | translate }}</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+
+</ion-content>

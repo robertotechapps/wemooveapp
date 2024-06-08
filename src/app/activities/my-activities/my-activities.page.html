@@ -1,0 +1,122 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{ 'MI' | translate }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-toolbar>
+        <ion-segment value="semana" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="semana">{{ 'WEEK' | translate }}</ion-segment-button>
+            <ion-segment-button value="mes">{{ 'MONTH' | translate }}</ion-segment-button>
+            <ion-segment-button value="anio">{{ 'YEAR' | translate }}</ion-segment-button>
+            <ion-segment-button value="all">{{ 'ALL' | translate }}</ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <!-- <ion-card>
+        <ion-card-content>
+            <canvas #barChart></canvas>
+        </ion-card-content>
+    </ion-card> -->
+    <div>
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col size="12" *ngIf="periodoConsultado == 'weekly'">
+                    <ion-title>{{'ESTA_SEMANA' | translate }}</ion-title>
+                </ion-col>
+                <ion-col size="12" *ngIf="periodoConsultado == 'monthly'">
+                    <ion-title>{{'ESTE_MES' | translate }}</ion-title>
+                </ion-col>
+                <ion-col size="12" *ngIf="periodoConsultado == 'yearly'">
+                    <ion-title>{{'ESTE_ANIO' | translate }}</ion-title>
+                </ion-col>
+                <ion-col size="12" *ngIf="periodoConsultado == 'total'">
+                    <ion-title>{{'ALL' | translate }}</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-card>
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="6" style="text-align:center; border-right:1px solid gainsboro;border-bottom:1px solid gainsboro;">
+                            <img src="../../../assets/img/distance.png" width="40%"><br />
+                            <span style="font-size:small; color: white;">{{ 'DISTANCIA' | translate }} </span><br />
+                            <span style="font-size:large; color: white;">{{kilometros}} kms</span>
+                        </ion-col>
+                        <ion-col size="6" style="text-align:center;border-bottom:1px solid gainsboro;">
+                            <img src="../../../assets/img/calories_2.png" width="40%"><br />
+                            <span style="font-size:small; color: white;">{{ 'CALORIAS' | translate }} </span><br />
+                            <span style="font-size:large; color: white;">{{totalCalorias | number : '1.2-2'}} cals</span>
+                        </ion-col>
+                    </ion-row>
+                    <hr />
+                    <ion-row>
+                        <ion-col size="6" style="text-align:center; border-right:1px solid gainsboro;">
+                            <img src="../../../assets/img/time.png" width="40%"><br />
+                            <span style="font-size:small; color: white;">{{ 'TIEMPO' | translate }} </span><br />
+                            <span style="font-size:large; color: white;">{{convertToStringTimeNumber(totalTiempo)}} hs</span>
+                        </ion-col>
+                        <ion-col size="6" style="text-align:center;">
+                            <img src="../../../assets/img/logros.png" width="40%"><br /><br />
+                            <ion-button style="background: #3d3645; color: #FFF; margin:auto; border-radius: 40px;" fill="clear" shape="round" [routerLink]="['/achievements']">{{ 'LOGROS' | translate }}</ion-button>
+
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+        </ion-grid>
+    </div>
+
+    <div class="user-friends-section" *ngIf="lastActivity !== null">
+        <ion-row>
+
+            <ion-col size="12">
+                <p style="margin-left:25px; color: #FFF; font-size: large; margin-bottom:10px;">{{'ACTIVIDAD RECIENTE' | translate}}</p>
+                <ion-card style="padding:5px; background: #1b1926; border-radius: 8px;">
+                    <ion-card-header style="padding-bottom: 0;">
+                        <ion-row>
+                            <ion-col size="2">
+                                <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                                    <app-image-shell class="user-image" animation="spinner" src="{{lastActivity?.activity_type?.icon}}"></app-image-shell>
+                                </app-aspect-ratio>
+                            </ion-col>
+                            <ion-col size="10">
+                                <ion-card-subtitle style="font-size:medium;color:white" *ngIf="!lastActivity?.esHoy">{{lastActivity?.activity_type?.name }}</ion-card-subtitle>
+                                <span style="font-size:small; color: white;"> {{lastActivity?.start_date | fechaLarga}}</span>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-row style="text-align: center;">
+                            <ion-col size="4">
+                                <span style="font-size:large; color: white;">{{lastActivity?.total_distance | number : '1.2-2'}}</span><br />
+                                <span style="font-size:small; color: white;"> {{ 'DISTANCIA' | translate }}</span>
+                            </ion-col>
+                            <ion-col size="4">
+                                <span style="font-size:large; color: white;">{{lastActivity?.total_calories | number : '1.2-2'}}</span><br />
+                                <span style="font-size:small; color: white;"> {{ 'CALORIAS' | translate }}</span>
+                            </ion-col>
+                            <ion-col size="4">
+                                <span style="font-size:large; color: white;">{{convertToStringTime(lastActivity?.total_duration)}}</span><br />
+                                <span style="font-size:small; color: white;"> {{ 'TIEMPO' | translate }}</span>
+                            </ion-col>
+                        </ion-row>
+
+                    </ion-card-content>
+
+                </ion-card>
+            </ion-col>
+            <ion-col size="12" class="ion-text-center">
+                <ion-button style="background: #3d3645; color: #FFF; margin:auto; border-radius: 40px;" fill="clear" shape="round" [routerLink]="['/activity-list']">{{ 'VER_TODO' | translate }}</ion-button>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-content>

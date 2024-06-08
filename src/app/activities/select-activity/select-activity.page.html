@@ -1,0 +1,269 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{'DASHBOARD' | translate}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item *ngIf="isLoading" style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-thumbnail slot="start">
+            <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+            <h3>
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </h3>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+            </p>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+            </p>
+        </ion-label>
+    </ion-item>
+    <ion-card *ngIf="!isLoading">
+        <ion-row>
+            <ion-col size="4" style="text-align: center;">
+                <div style="width:80%; margin: 0px auto; padding-bottom: 1vh;">
+                    <app-aspect-ratio [ratio]="{w: 1, h: 1}" class="user-image">
+                        <app-image-shell [display]="'cover'" animation="spinner" [src]="usrDashboard?.userDetail?.avatar" style="background-position: center center;">
+                        </app-image-shell>
+                    </app-aspect-ratio>
+                </div>
+                <ion-text class="title" style="text-align: center; color: white;"> {{usrDashboard?.userDetail?.firstname}}</ion-text>
+            </ion-col>
+            <ion-col size="8">
+                <ion-row>
+                    <ion-col size="6" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                        <span class="smallspan">
+                        {{'USD_GANADOS' | translate }}
+                    </span> <br />
+                        <span class="user-name" style="font-size:x-large; color: #FFF">
+                            ${{usrDashboard?.totalAmounts?.totalUsd | roundNumber: 100}} 
+                        </span>
+                    </ion-col>
+                    <ion-col size="6" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                        <span class="smallspan">
+                        {{'MONEDAS_GANADAS' | translate }}
+                        </span><br />
+                        <span class="user-name" style="font-size:x-large; color: #FFF">
+                            {{usrDashboard?.totalAmounts?.totalCoins | roundNumber: 100}}  <img src="../../../assets/img/beatcoin_icon.png">
+                        </span>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-text>
+                            <span class="smallspan">
+                                {{'AVG_CALORIES' | translate }}
+                            </span><br />
+                            <span class="user-name" style="font-size:x-large; color: #FFF">
+                            {{usrDashboard?.totalAmounts?.avgCalories | number : '1.2-2'}}</span>
+                        </ion-text>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row style="margin:auto;">
+            <ion-col size="6">
+                <ion-row>
+                    <ion-col size="4" class="ion-text-right">
+                        <img src="../../../assets/img/medalla.png" style="width:85%">
+                    </ion-col>
+                    <ion-col size="8" class="ion-text-left">
+                        <small>{{'DESAFIOS' | translate}}</small><br />
+                        <strong>{{usrDashboard?.totalAmounts?.totalDesafios }}</strong>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col size="6">
+                <ion-row>
+                    <ion-col size="4">
+                        <img src="../../../assets/img/logros.png" style="width:85%">
+                    </ion-col>
+                    <ion-col size="8">
+                        <small>{{'LOGROS' | translate}}</small><br />
+                        <strong>{{usrDashboard?.totalAmounts?.totalLogros}}</strong>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+
+
+
+    </ion-card>
+
+    <p style="margin-left:25px; color: #FFF; font-size: large;margin-bottom:10px;">{{'HOY' | translate}}</p>
+    <ion-item *ngIf="isLoading" style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-thumbnail slot="start">
+            <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+            <h3>
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </h3>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+            </p>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+            </p>
+        </ion-label>
+    </ion-item>
+    <!-- <ion-card>
+        <ion-card-content>
+            <canvas #barChart></canvas>
+        </ion-card-content>
+    </ion-card> -->
+    <ion-card *ngIf="!isLoading" style="margin-top:10px;">
+        <ion-card-content>
+            <!-- <ion-card-subtitle *ngIf="todayTotalActivity?.total_calories != 0">{{'DESDE_HOY' | translate}} {{todayTotalActivity?.firstActivityDate | hora}}hs</ion-card-subtitle> -->
+
+            <p style="color: white;font-size:x-small; margin:0px;">{{'TODAY_CALORIES' | translate}}</p>
+            <p style="color: white;font-size:x-large;">{{todayTotalActivity?.total_calories | roundNumber: 100}} </p>
+
+            <ion-row class="marginleft">
+
+                <canvas #barChart></canvas>
+            </ion-row>
+
+            <ion-row class="marginleft">
+                <ion-col size="12">
+                    <div style="vertical-align: middle; float: left; width:25%; text-align: center;" *ngFor="let actividad of todayTotalActivity?.activityList;">
+                        <p style="color: #FFF" ;><img [src]="actividad.icon" class="img-slider"><label style="margin-top:-10px;"><br />
+                        {{actividad.total_calories  | number : '1.2-2'}} {{'cal' | translate}}</label></p>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="marginleft">
+                <ion-col size="6">
+                    <span style="color: #FFF; font-size: medium">{{'TODAY_EARNS' | translate}} </span><br />
+                    <span style="color: #FFF; font-size: x-large;">{{todayTotalActivity?.total_coins *  usrDashboard?.totalAmounts?.cotizacion| roundNumber: 100}} <span class="smallspan">USD</span></span>
+                </ion-col>
+                <ion-col size="6">
+                    <span style="color: #FFF; font-size: medium">{{'TODAY_COINS' | translate}}</span><br />
+                    <span style="color: #FFF; font-size: x-large;">{{todayTotalActivity?.total_coins | roundNumber: 100}} <img src="../../../assets/img/beatcoin_icon.png" style="width:40px; height:auto;"></span>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+    <p style="margin-left:25px; color: #FFF; font-size: large; margin-bottom:10px;">{{'TU_ENTIDAD_BENEFICA' | translate}}</p>
+    <ion-item *ngIf="isLoading" style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-thumbnail slot="start">
+            <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+            <h3>
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </h3>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+            </p>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+            </p>
+        </ion-label>
+    </ion-item>
+    <ion-card *ngIf="!isLoading" style="margin-top:10px;">
+        <ion-card-content>
+            <ion-row>
+                <ion-col size="4">
+                    <img [src]="usrDashboard?.charity?.picture" style="border-radius:6px;" (click)="cambiarEntidad()" /><br />
+                </ion-col>
+                <ion-col size="8">
+                    <ion-row style="text-align: center;">
+                        <ion-col size="6">
+                            <span style="color: #FFF; font-size: x-small">{{'TODAY_DONATIONS' | translate}}  </span><br /><span style="color: #FFF; font-size: x-large;">{{usrDashboard?.charity?.today_total_donations | roundNumber: 100}} <img src="../../../assets/img/beatcoin_icon.png"></span></ion-col>
+
+                        <ion-col size="6"><span style="color: #FFF; font-size:  x-small">{{'GLOBAL' | translate}} </span><br /><span style="color: #FFF; font-size: x-large;">{{usrDashboard?.charity?.total_donations | roundNumber: 100}} <img src="../../../assets/img/beatcoin_icon.png"></span></ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+    <p style="margin-left:25px; color: #FFF; font-size: large; margin-bottom:10px;">{{'CURRENT_CHALLENGE' | translate}}</p>
+    <ion-item *ngIf="isLoading" style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-thumbnail slot="start">
+            <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+            <h3>
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </h3>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+            </p>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+            </p>
+        </ion-label>
+    </ion-item>
+    <ion-card *ngIf="!isLoading" style="margin-top:10px;">
+        <ion-card-content>
+            <ion-row *ngIf="usrDashboard?.currentChallenge?.challenge">
+                <ion-col size="4">
+                    <img [src]="usrDashboard?.currentChallenge?.challenge?.picture" class="dashimg" (click)="verDesafio()" /><br />
+                </ion-col>
+                <ion-col size="8">
+                    <span style="color: #FFF; font-size: x-small">{{'LEFT' | translate}}</span><br /><span style="color: #FFF; font-size: x-large;">{{usrDashboard?.currentChallenge.leftHours}} HS</span><br />
+                    <span style="color: #FFF; font-size: x-small">{{'TARGET' | translate}}</span>
+                    <br />
+                    <span style="color: #FFF; font-size: x-large;">
+                                <strong *ngIf='usrDashboard?.currentChallenge?.challenge?.target_calories' >{{'CALORIAS' | translate}} {{usrDashboard?.currentChallenge?.challenge.target_calories | roundNumber: 100}}</strong> 
+                                <strong *ngIf='usrDashboard?.currentChallenge?.challenge?.target_distance' >{{'DISTANCIA' | translate}} {{usrDashboard?.currentChallenge?.challenge.target_distance}} {{'KM' | translate}}</strong> 
+                                <strong *ngIf='usrDashboard?.currentChallenge?.challenge?.target_duration' >{{'DURACIÓN' | translate}} {{usrDashboard?.currentChallenge?.challenge.target_duration}} Hs.</strong> 
+                            </span>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="!usrDashboard?.currentChallenge?.challenge">
+                <ion-col size="4" class="ion-text-center">
+                    <img src="../../../assets/img/medalla.png" style="width: 70%; opacity:.3" (click)="selectChallenge()" /><br />
+                </ion-col>
+                <ion-col size="8" style="text-align:center; vertical-align: middle; padding-top: 12px ;">
+                    <span>{{'AWAITING' | translate}}</span>
+                    <ion-button style="background: #9662d1; color: #FFF; margin:auto; border-radius: 40px;margin-top:8px;" fill="clear" shape="round" (click)="selectChallenge()">join new!</ion-button>
+
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+    <p style="margin-left:25px; color: #FFF; font-size: large; margin-bottom:10px;">{{'INICIAR_CARRERA' | translate}}</p>
+    <ion-item *ngIf="isLoading" style="--background: rgba(1, 1, 1, 0.19); margin: 4%; --border-radius: 10px;">
+        <ion-thumbnail slot="start">
+            <ion-skeleton-text [animated]="true" style="--border-radius: 100%;"></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+            <h3>
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </h3>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+            </p>
+            <p>
+                <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+            </p>
+        </ion-label>
+    </ion-item>
+
+    <ion-card *ngIf="!isLoading" style="margin-top:10px;">
+        <ion-card-content>
+            <ion-row class="ion-justify-content-center">
+                <ion-col size="3" *ngFor="let activity_type of activity_types;">
+                    <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                        <app-image-shell animation="spinner" class="friend-picture" [src]="activity_type.icon" (click)="iniciarActividad(activity_type.id)"></app-image-shell>
+                    </app-aspect-ratio>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

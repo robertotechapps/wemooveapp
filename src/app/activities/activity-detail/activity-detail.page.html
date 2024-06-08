@@ -1,0 +1,108 @@
+<ion-header>
+    <ion-toolbar class="back">
+        <ion-buttons slot="start" style="padding-left:10px;">
+            <span [routerLink]="['/activity-list']"><ion-icon name="arrow-back"></ion-icon></span>
+        </ion-buttons>
+        <ion-title>
+            {{ 'ACTIVIDAD' | translate }}
+        </ion-title>
+        <ion-buttons slot="end">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content style="margin-bottom:20px;">
+    <div #map id="map" *ngIf="activity?.activity_type?.map" class="my-google-map">
+    </div>
+    <div style="width:100%;margin-top:10%;margin-bottom: 10%;">
+
+        <ion-card style="margin-top:10px;">
+            <ion-card-header style="padding-bottom: 0;">
+                <ion-row>
+                    <ion-col size="2">
+                        <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                            <app-image-shell class="user-image" animation="spinner" src="{{activity?.activity_type?.icon}}"></app-image-shell>
+                        </app-aspect-ratio>
+                    </ion-col>
+                    <ion-col size="10">
+                        <ion-card-subtitle style="font-size:medium;color:white; text-align: left;">{{activity?.activity_type?.name }}</ion-card-subtitle>
+                        <span style="font-size:small; color: white;"> {{activity?.fechaLarga}}</span>
+                    </ion-col>
+                </ion-row>
+
+            </ion-card-header>
+            <ion-card-content>
+                <ion-row style="text-align: center;">
+                    <ion-col size="4" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                        <span class="smallspan">
+                        {{'DISTANCIA' | translate }}
+                    </span> <br />
+                        <span class="user-name" style="font-size:large; color: #FFF">
+                        {{totalDistancia | number : '1.2-2'}}</span><br /><span style="font-size: x-small; color:white;">Km</span>
+                    </ion-col>
+                    <ion-col size="4" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                        <span class="smallspan">
+                        {{'CALORIAS' | translate }}
+                        </span><br />
+                        <span class="user-name" style="font-size:large; color: #FFF">
+                            {{activity.total_calories | number : '1.2-2'}}</span><br /><span style="font-size: x-small; color:white;">Cal</span>
+                    </ion-col>
+                    <ion-col size="4" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                        <span class="smallspan">
+                        {{'TIEMPO' | translate }}
+                        </span><br />
+                        <span class="user-name" style="font-size:large; color: #FFF">
+                            {{stringTime}}</span><br /><span style="font-size: x-small; color:white;">Hs:mm:ss</span>
+                    </ion-col>
+                </ion-row>
+
+            </ion-card-content>
+        </ion-card>
+        <div>
+            <p style="text-align:left;margin-left:25px; color: white; font-size: large; margin-bottom:10px;"> {{'PREMIO' | translate }}</p>
+            <ion-card style="margin-top:10px;">
+                <ion-card-content>
+                    <ion-row style="text-align: center;">
+                        <ion-col size="4" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                            <span class="smallspan">
+                                {{'TOTAL_DONATIONS' | translate }}
+                            </span><br />
+                            <span class="user-name" style="font-size:large; color: #FFF">
+                                    {{activity?.totalCoins*2 | number : '1.2-2'}} <br />
+                                    <img src="../../../assets/img/beatcoin_icon.png"><!--<span style="font-size: x-small; color:white;">BPM</span>-->
+                            </span>
+                        </ion-col>
+                        <ion-col size="4" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                            <span class="smallspan">
+                                {{'TU_ENTIDAD_BENEFICA' | translate }}
+                            </span> <br />
+                            <span class="user-name" style="font-size:large; color: #FFF">
+                                {{activity.totalCoins | number : '1.2-2'}}  <br />
+                                <img src="../../../assets/img/beatcoin_icon.png"><!--<span style="font-size: x-small; color:white;">BPM</span>-->
+                            </span>
+                        </ion-col>
+
+                        <ion-col size="4" style="border-bottom: 2px solid #17D1E1;padding-bottom: 8px; margin-bottom: 8px;">
+                            <span class="smallspan">
+                                {{'MONEDAS_WALLET' | translate }}
+                            </span><br />
+                            <span class="user-name" style="font-size:large; color: #FFF">
+                                    {{activity?.totalCoins | number : '1.2-2'}}  <br />
+                                    <img src="../../../assets/img/beatcoin_icon.png"><!--<span style="font-size: x-small; color:white;">BPM</span>-->
+                            </span>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+        </div>
+        <ion-row>
+            <ion-col size="12">
+                <ion-button class="signup-button" style="color: black" color="primary" expand="block" [routerLink]="['/activities']">{{"GO_DASHBOARD" | translate}}</ion-button>
+            </ion-col>
+
+        </ion-row>
+    </div>
+</ion-content>

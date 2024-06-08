@@ -1,0 +1,113 @@
+<ion-header>
+    <ion-toolbar *ngIf="!this.hasHeader" class="back">
+        <ion-buttons slot="start" style="padding-left:10px;" (click)="onGoBack()">
+            <span><ion-icon name="arrow-back"></ion-icon></span>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img [src]="icon" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{'ACTIVITY_IN_PROGRESS' | translate}}
+        </ion-title>
+    </ion-toolbar>
+    <ion-toolbar *ngIf="this.hasHeader" [style.--background]="header">
+        <ion-buttons slot="start" style="padding-left:10px;" (click)="onGoBack()">
+            <span><ion-icon name="arrow-back"></ion-icon></span>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <img [src]="icon" style="width: auto; height: 55px;" />
+        </ion-buttons>
+        <ion-title>
+            {{'ACTIVITY_IN_PROGRESS' | translate}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="margin-bottom:20px;">
+    <div #map id="map" class="my-google-map" *ngIf="activity?.map">
+    </div>
+    <div style="width:100%;text-align:center;margin-top:24%;margin-bottom: 10%;">
+        <ion-card style="padding:20px;">
+            <ion-row>
+                <ion-col size="3">
+                    <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                        <app-image-shell style="width:75%; height:75%; padding:auto; margin:auto;" class="user-image" animation="spinner" src="{{activity?.icon}}"></app-image-shell>
+                        <ion-text style="font-size: small; color:#24d3db;">{{activity?.name}}</ion-text>
+                    </app-aspect-ratio>
+                </ion-col>
+                <ion-col size="4" style="text-align: center; padding-top:20px;">
+                    <ion-text style="font-size: large; margin:0; font-weight: bold;color:white; " *ngIf="activity?.map">{{(kilometros | async)}}</ion-text>
+                    <div style="text-align: center; padding-top:15px;">
+                        <ion-text style="font-size: small; color:#24d3db; padding-top:15px;">{{'KM' | translate }}</ion-text>
+                    </div>
+
+                </ion-col>
+                <ion-col size="5" style="text-align: right; padding-top:20px;">
+                    <ion-text style="font-size: large;margin:0;font-weight: bold;color:white; padding-top:20px;">{{ time}}</ion-text>
+                    <div style="text-align: center; padding-top:15px;">
+                        <ion-text style="font-size: small; color:#24d3db; padding-top:15px; text-align: center;">{{'TIEMPO'| translate }}</ion-text>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+        <ion-row style="margin-top:5px;">
+            <ion-col size="12" style="margin-top:10px;">
+                <ion-button size="large" shape="round" (click)="startTracking()" style="color: white;" *ngIf="timer === 0">
+                    <ion-icon slot="icon-only" name="play"></ion-icon>{{'GO' | translate }}
+                </ion-button>
+            </ion-col>
+            <ion-col size="6">
+                <ion-button size="large" shape="round" (click)="stopTracking()" style="color: white;" *ngIf="timer !== 0">
+                    <ion-icon slot="icon-only" name="stop"></ion-icon>{{'FINISH' | translate }}
+                </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button size="large" shape="round" [color]="isTracking ? 'warning' : 'success'" (click)="pauseTracking()" *ngIf="timer !== 0">
+                <ion-icon slot="icon-only" [name]="isTracking ? 'pause' : 'play'"></ion-icon>
+                {{ isTracking ? ('PAUSE' | translate) : ('CONTINUE' | translate) }}
+              </ion-button>
+
+
+
+<!--                 <ion-button size="large" shape="round" color="warning" (click)="pauseTracking()" *ngIf="timer != 0">
+                    <ion-icon slot="icon-only" name="pause"></ion-icon>{{'PAUSE' | translate }}
+                </ion-button> -->
+            </ion-col>
+        </ion-row>
+    </div>
+    <div style="width:100%;text-align:center;" *ngIf="hasChallenge">
+        <ion-card>
+            <ion-row class="row-footer">
+                <ion-col size="4">
+                    <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                        <app-image-shell [display]="'cover'" animation="spinner" class="friend-picture" [src]="challenge?.challenge?.picture"></app-image-shell>
+                    </app-aspect-ratio>
+                </ion-col>
+                <ion-col size="8" style="text-align: center; padding-top:10px;">
+                    <p *ngIf="hasChallenge" style="font-size: 16px; color: white;">{{challenge?.challenge?.name}}</p><br />
+                    <p *ngIf="hasChallenge" style="font-size: 16px; color: white;">{{challenge?.left_time_minutes}} {{'LEFT' | translate}}</p>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+    <div style="width:100%;text-align:center;" *ngIf="!hasChallenge">
+        <ion-card>
+            <ion-row class="row-footer">
+                <ion-col size="4">
+                    <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                        <app-image-shell [display]="'cover'" animation="spinner" class="friend-picture" [src]="charity?.picture"></app-image-shell>
+                    </app-aspect-ratio>
+                </ion-col>
+                <ion-col size="8" style="text-align: center; padding-top:10px;">
+                    <p style="font-size: 16px; color: white; ">{{charity?.charity.name}}</p><br/>
+                    <p style="font-size: 16px; color: white;">{{charity?.total_donations | roundNumber: 100}} <img src="../../../assets/img/beatcoin_icon.png"> <br />
+                        <ion-text style="font-size: small; color:#24d3db; padding-top:15px;">{{'TOTAL_DONATIONS' | translate }}</ion-text>
+                    </p>
+
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+
+</ion-content>

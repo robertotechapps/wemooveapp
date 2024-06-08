@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar class="back">
+
+        <ion-buttons slot="start" style="padding-left:10px;">
+            <span [routerLink]="['/my-activities']"><ion-icon name="arrow-back"></ion-icon></span>
+        </ion-buttons>
+
+        <ion-title>
+            {{ 'ACTIVIDADES' | translate }}
+        </ion-title>
+        <ion-buttons slot="end">
+            <img [routerLink]="['/activities']" src="../../assets/img/icon.png" style="width: auto; height: 55px;" />
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card *ngFor="let activity of activityList;">
+
+        <ion-card-header style="padding-bottom: 0;">
+            <ion-row>
+                <ion-col size="2">
+                    <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+                        <app-image-shell class="user-image" animation="spinner" src="{{activity?.activity_type?.icon}}"></app-image-shell>
+                    </app-aspect-ratio>
+                </ion-col>
+                <ion-col size="10">
+                    <ion-card-subtitle style="font-size:medium;color:white">{{activity.activity_type.name }}</ion-card-subtitle>
+                    <span style="font-size:small; color: white;"> {{activity.start_date | fechaLarga}}</span>
+                </ion-col>
+            </ion-row>
+
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row style="text-align: center;">
+                <ion-col size="4">
+                    <span style="font-size: small; color:white;"> {{ 'DISTANCIA' | translate }}</span><br />
+                    <span style="font-size: large; color:white;">{{convertToKms(activity.total_distance) | number : '1.2-2'}}</span><span style="font-size: x-small; color:white;">Km</span>
+
+                </ion-col>
+                <ion-col size="4">
+                    <span style="font-size: small; color:white;"> {{ 'CALORIAS' | translate }}</span><br />
+                    <span style="font-size: large; color:white;">{{activity.total_calories | number : '1.2-2'}}</span>
+                    <span style="font-size: x-small; color:white;">Cals</span>
+                </ion-col>
+                <ion-col size="4">
+                    <span style="font-size: small; color:white;"> {{ 'TIEMPO' | translate }}</span><br />
+                    <span style="font-size: large; color:white;">{{convertToStringTime(activity.total_duration)}}</span>
+                    <span style="font-size: x-small; color:white;">Hs</span>
+                </ion-col>
+            </ion-row>
+            <ion-button (click)="detalle(activity.id)" expand="block" fill="clear" shape="round">
+                {{ 'DETALLE' | translate }}
+            </ion-button>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
